@@ -1,8 +1,4 @@
 
-// @ts-ignore: React is required for JSX
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import React from 'react'
-
 import './App.css'
 
 function App() {
