@@ -23,5 +23,5 @@ dist-ssr
 *.sln
 *.sw?
 .env
-deploy.sh
-delete.sh
+.deploy.sh
+.delete.sh
