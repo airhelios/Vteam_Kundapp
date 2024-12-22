@@ -11,7 +11,10 @@ function App() {
     <Router >
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/adminstartpage" element={<Home />} />
+        <Route path="/customerstartpage" element={<Home />} />
         <Route path="github/callback" element={<Github/>} />
+
         {/* <Route path="/map/:city" element={<ShowMap/>} />
         <Route path="/user/:githubId" element={<AdminUserOverviewPage />} />
         <Route path="/adminmapnavigation" element={<AdminMapNavigation />} /> */}
