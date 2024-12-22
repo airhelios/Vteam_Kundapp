@@ -14,7 +14,7 @@ import { renderScooterMarkers, renderStationMarkers, renderPolygons } from '../h
 export default function Map() {
     const { city }  = useParams();
     const [startPosition, setStartPosition] = useState<LatLngExpression>([59.2741, 15.2066]);
-    const {isLoggedIn, token, user, role} = useSelector((state: RootState) =>  state.auth);
+    // const {isLoggedIn, token, user, role} = useSelector((state: RootState) =>  state.auth);
     const [scooterData, setScooterData] = useState<Scooter[]>([]);
     const [zoneData, setZoneData] = useState<Zone[]>([]);
     const zoom = 11;
@@ -57,9 +57,12 @@ export default function Map() {
 
     
   return (
-    <div id="map" data-testid="map">
+    <div id="map" 
+    data-testid="map"
+    className="h-screen flex-grow" >
         <MapContainer
-        style={{ height: "400px" }}
+
+        className="w-full h-full"
         center={startPosition}
         zoom={zoom}
         scrollWheelZoom={true}

@@ -3,3 +3,8 @@
   margin: 0 auto;
   text-align: center;
 }
+
+#map {
+  height: 100vh;
+  flex: 1;
+}
