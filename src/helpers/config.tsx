@@ -1,8 +1,11 @@
-export const API_URL = "http://localhost:3535";
+// import dotenv from 'dotenv';
 
+// dotenv.config();
+const port = parseInt(import.meta.env.VITE_PORT || "3000")
+export const API_URL = "http://localhost:3535";
 const githubAuthUrl = 'https://github.com/login/oauth/authorize';
 const clientId = 'Ov23liY1kaJ2acYLtBhq';
-const redirectUri = 'http://localhost:5173/github/callback';
+const redirectUri = `http://localhost:${port}/github/callback`;
 const scope = 'user:email';
 import markerIcon from '../assets/images/station.png';
 export const GITHUB_URL = `${githubAuthUrl}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}`;
