@@ -25,4 +25,3 @@ dist-ssr
 .env
 .deploy.sh
 .delete.sh
-.github/*
