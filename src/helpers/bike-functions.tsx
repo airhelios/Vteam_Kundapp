@@ -10,7 +10,7 @@ export type City = {
     longitude: number | null;
     createdAt: string;
     updatedAt: string; 
-  };
+};
   
 export type BikeStatus = {
     batteryLevel: number;
@@ -23,12 +23,16 @@ export type BikeStatus = {
     updatedAt: string; // ISO timestamp as a string
 };
 
+type bikeArray = {
+    [key: string] : any;
+}
+
 type RentBikeResponse = Array<{
     id: number;
     [key: string]: any; // Allow additional unknown keys
   }>;
 
-export const bikePerCity = async (city: string, token: string, status = '') : Promise<AxiosResponse<any, any>> =>
+export const bikePerCity = async (city: string, token: string, status = '') : Promise<any> =>
 {
     let data;
     
@@ -49,7 +53,7 @@ export const bikePerCity = async (city: string, token: string, status = '') : Pr
     return data;
 }
 
-export const allBikes = async ( token:string ) : Promise<AxiosResponse<any, any>> =>
+export const allBikes = async ( token:string ) : Promise<any> =>
 {
         let data;
         try {
@@ -86,7 +90,7 @@ export const rentBike = async (bikeId: string, token: string) : Promise<RentBike
 }
 
 export const returnBike = async (tripID: string | null, token: string) : Promise<any> =>
-    {
+{
         let data: RentBikeResponse | any;
 
             try {
@@ -100,7 +104,12 @@ export const returnBike = async (tripID: string | null, token: string) : Promise
                 console.log(error.response);
                 toast.error(error.response.data.message)
                 data = error.response.data;
-
             }
             return data;
-    }
+}
+
+export const bikeIdByFive = async (bikeIdFive: string | null, token: string): Promise<string> => {
+    const data = await allBikes(token);
+    const bike = await data.find((item: bikeArray) => item.id.startsWith(bikeIdFive?.toLowerCase()));
+    return bike.id;
+}

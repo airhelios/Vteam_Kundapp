@@ -1,21 +1,24 @@
 
 import { useState, useEffect, useDebugValue} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState, AppDispatch } from '../redux/store/store';
+import { RootState } from '../redux/store/store';
 import { toastOptionsError, toastOptionsSuccess } from '../helpers/config';
-import { rentBike, returnBike } from '../helpers/bike-functions';
+import { rentBike, returnBike, bikeIdByFive } from '../helpers/bike-functions';
 import { toast} from 'react-toastify';
 import { setBikeId, setRentStatus, setStartTime, setUser, setTripID } from '../redux/slices/rentSlice';
 
-export default function RentBike( { bikeId }: {'bikeId': string }) {
-    // const bikeId = "f9f2e697-e9ce-4974-9799-9233323e9257";
+export default function RentBike( {  shortId = false, bikeId }: {'bikeId': string; shortId?: boolean}) {
     const { token, user } = useSelector((state: RootState) =>  state.auth);
     const dispatch = useDispatch();
-    const { tripID, beingRent } = useSelector((state: RootState) =>  state.rent);
+    const { tripID, beingRented } = useSelector((state: RootState) =>  state.rent);
 
     const rentBikeId = async (bikeId: string) => {
+
+      if (shortId) {
+        bikeId = await bikeIdByFive(bikeId, token);
+      }
       const data = await rentBike(bikeId, token);
-      if (data.statusCode !== 400 && !beingRent)
+      if (data.statusCode !== 400 && !beingRented)
       {
         dispatch(setBikeId(data.bike.id));
         dispatch(setRentStatus(true));
@@ -32,7 +35,7 @@ export default function RentBike( { bikeId }: {'bikeId': string }) {
   
     const returnBikeId = async () => {
       const data = await returnBike(tripID, token);
-      if (data.statusCode !== 400 && beingRent)
+      if (data.statusCode !== 400 && beingRented)
       {
         dispatch(setBikeId(null));
         dispatch(setRentStatus(false));
@@ -49,7 +52,7 @@ export default function RentBike( { bikeId }: {'bikeId': string }) {
 
   return (
     <>
-      {!beingRent &&  
+      {!beingRented &&  
         <div>
             <button type="button" onClick={() => rentBikeId(bikeId)} className="text-white bg-blue-700 hover:bg-blue-800
             focus:ring-4 focus:ring-blue-300font-medium rounded-lg text-sm px-5 py-2.5
@@ -58,7 +61,7 @@ export default function RentBike( { bikeId }: {'bikeId': string }) {
             Rent</button>
         </div>
       }
-      {beingRent && 
+      {beingRented && 
         <div>
           <button type="button" onClick={async () => await returnBikeId()} className="text-white bg-blue-700 hover:bg-blue-800
           focus:ring-4 focus:ring-blue-300font-medium rounded-lg text-sm px-5 py-2.5

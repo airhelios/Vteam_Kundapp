@@ -1,17 +1,16 @@
-// src/redux/slices/authSlice.ts
 import { createSlice } from '@reduxjs/toolkit';
 
 type RentState = {
   bikeId: string | null
-  beingRent: boolean,
+  beingRented: boolean,
   startTime: Date | null
   user: string | null,
   tripID: string | null
 };
 
 const initialState: RentState = {
-  bikeId: '',
-  beingRent: false,
+  bikeId: null,
+  beingRented: false,
   startTime: null,
   user: null,
   tripID: null
@@ -25,7 +24,7 @@ const rentSlice = createSlice({
       state.bikeId = action.payload;
     },
     setRentStatus(state, action) {
-      state.beingRent = action.payload;
+      state.beingRented = action.payload;
     },
     setStartTime(state, action) {
         state.startTime = action.payload

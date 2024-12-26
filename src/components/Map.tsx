@@ -38,7 +38,7 @@ export default function Map() {
                     console.log(response.data)
                     bikePerCity(city, token, 'Available')
                     setScooterData(response.data);
-                    }
+                }
             }
 
             catch(error)
