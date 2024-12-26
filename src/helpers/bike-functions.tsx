@@ -2,6 +2,7 @@ import axios, { AxiosResponse } from 'axios';
 import { API_URL, getHeader } from '../helpers/config';
 import { toast } from 'react-toastify';
 
+
 export type City = {
     id: string;
     name: string;
@@ -22,6 +23,10 @@ export type BikeStatus = {
     updatedAt: string; // ISO timestamp as a string
 };
 
+type RentBikeResponse = Array<{
+    id: number;
+    [key: string]: any; // Allow additional unknown keys
+  }>;
 
 export const bikePerCity = async (city: string, token: string, status = '') : Promise<AxiosResponse<any, any>> =>
 {
@@ -59,31 +64,42 @@ export const allBikes = async ( token:string ) : Promise<AxiosResponse<any, any>
         return data;
 }
 
-export const rentBike = async (bikeId: string, token: string) : Promise<AxiosResponse<any, any>> =>
+export const rentBike = async (bikeId: string, token: string) : Promise<RentBikeResponse | any> =>
 {
-        let data;
-        try {
-                const response = await axios.post(`${API_URL}/rental/bike/${bikeId}`, {}, getHeader(token));
-                data = response.data;
+        let data: RentBikeResponse | any;
+        try
+        {
+            const response = await axios.post(`${API_URL}/rental/bike/${bikeId}`, {}, getHeader(token));
+
+            data = {... response.data, "statusCode": 200 };
+            console.log(response);
+            console.log(data);
+                
         }
         catch(error: any) {
             console.log(error.response.data.message);
             toast.error(error.response.data.message)
+            console.log(error.response.data);
+            data = error.response.data;
         }
         return data;
 }
 
-export const returnBike = async (bikeId: string, token: string) : Promise<AxiosResponse<any, any>> =>
+export const returnBike = async (tripID: string | null, token: string) : Promise<any> =>
     {
-            let data;
+        let data: RentBikeResponse | any;
+
             try {
-                    const response = await axios.post(`${API_URL}/rental/${bikeId}/end`, {}, getHeader(token));
-                    data = response.data;
+                    const response = await axios.post(`${API_URL}/rental/${tripID}/end`, {}, getHeader(token));
+                    data = {... response.data, "statusCode": 200 };
+                    console.log(response)
                     console.log(data)
             }
             catch(error: any) {
+                console.log(error)
                 console.log(error.response);
                 toast.error(error.response.data.message)
+                data = error.response.data;
 
             }
             return data;

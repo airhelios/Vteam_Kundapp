@@ -3,6 +3,7 @@ import Home from './pages/Home';
 import Github from './pages/Github';
 import ShowMap from './pages/ShowMap';
 import RentBike from './pages/RentBike';
+import { ToastContainer } from 'react-toastify';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
@@ -22,10 +23,10 @@ function App() {
         <Route path="/adminmapnavigation" element={<AdminMapNavigation />} /> */}
         </Routes>
       </Router>
+      <ToastContainer />
       <div data-testid="app-test"></div>
       </div>
   )
 }
 
-export default App
-
+export default App;

@@ -48,7 +48,6 @@ const Github: React.FC = () => {
                     dispatch(setLoggedInOut(true));
                     setisLoggedIn(true);
                 }
-                
             catch(error)
             {
                 console.log(error);
