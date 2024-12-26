@@ -2,7 +2,7 @@ import { Popup, Marker, Polygon, Tooltip} from 'react-leaflet';
 import { Scooter, Zone } from './leaflet-types'
 import { LatLngTuple } from 'leaflet';
 import { iconStation } from '../config';
-import RentBike from '../../pages/RentBike';
+import RentButton from '../../components/RentButton';
 
 
 const renderScooterMarkers = (scooterData: Scooter[])=>   (
@@ -12,7 +12,7 @@ const renderScooterMarkers = (scooterData: Scooter[])=>   (
             <p>Id: { scooter.id} </p>
             <p>BatteryLevel: { scooter.batteryLevel} </p>
             <p>Status: { scooter.status} </p>
-            <RentBike bikeId={scooter.id}/>
+            <RentButton bikeId={scooter.id}/>
         </Popup>
     </Marker>))
     );

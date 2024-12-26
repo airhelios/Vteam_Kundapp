@@ -2,17 +2,12 @@
 import { useState, useEffect, useDebugValue} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, AppDispatch } from '../redux/store/store';
-
-import { rentBike, returnBike, BikeStatus } from '../helpers/bike-functions';
-import { toast, Bounce } from 'react-toastify';
+import { toastOptionsError, toastOptionsSuccess } from '../helpers/config';
+import { rentBike, returnBike } from '../helpers/bike-functions';
+import { toast} from 'react-toastify';
 import { setBikeId, setRentStatus, setStartTime, setUser, setTripID } from '../redux/slices/rentSlice';
 
-type bikeProps = {
-  'bikeId': string;
-}
-
-
-export default function RentBike( {bikeId}: bikeProps) {
+export default function RentBike( { bikeId }: {'bikeId': string }) {
     // const bikeId = "f9f2e697-e9ce-4974-9799-9233323e9257";
     const { token, user } = useSelector((state: RootState) =>  state.auth);
     const dispatch = useDispatch();
@@ -28,30 +23,10 @@ export default function RentBike( {bikeId}: bikeProps) {
         dispatch(setUser(user));
         dispatch(setTripID(data.id));
         
-        toast.success(`Bike ${bikeId.slice(0,5)} was rented`,{
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: false,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-          transition: Bounce,
-          });
+        toast.success(`Bike ${bikeId.slice(0,5)} was rented`, toastOptionsSuccess);
       } else 
       {
-        toast.error("Bike was not rented",{
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: false,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-          transition: Bounce
-          });
+        toast.error("Bike was not rented", toastOptionsError);
       }
     }
   
@@ -64,32 +39,10 @@ export default function RentBike( {bikeId}: bikeProps) {
         dispatch(setStartTime(null));
         dispatch(setUser(null));
         dispatch(setTripID(null));
-        toast.success(`Bike ${bikeId.slice(0,5)} was returned`,{
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: false,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-          transition: Bounce,
-          }
-        );
+        toast.success(`Bike ${bikeId.slice(0,5)} was returned`, toastOptionsSuccess);
       } else 
       {
-        toast.error("Bike was not returned", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: false,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-          transition: Bounce
-          }
-        );
+        toast.error("Bike was not returned", toastOptionsError);
       }
     }
 
