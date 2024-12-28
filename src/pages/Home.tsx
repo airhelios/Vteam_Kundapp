@@ -3,9 +3,8 @@ import { useState, useEffect } from 'react';
 import { RootState, AppDispatch } from '../redux/store/store';
 import Logout from '../components/Logout';
 import { Link } from 'react-router-dom';
-import RentButton from '../components/RentButton';
 import { useSelector } from 'react-redux';
-
+import RentBikeField from '../components/RentBikeField';
 
 // Issues:
 // Om man skriver fel id när man ska hyra cykel så hänger den sig
@@ -24,32 +23,32 @@ export default function Home() {
     const [showReturnButton, setShowReturnButton] = useState(false);
 
 
-    useEffect(() => {
-        if (!beingRented && isLoggedIn)
-        {
-            setShowRentInput(true);
-        } else {
-            setShowRentInput(false);
-        }
-    }, [beingRented, isLoggedIn])
+    // useEffect(() => {
+    //     if (!beingRented && isLoggedIn)
+    //     {
+    //         setShowRentInput(true);
+    //     } else {
+    //         setShowRentInput(false);
+    //     }
+    // }, [beingRented, isLoggedIn])
 
-    useEffect(() => {
-        if (bikeId.length >=5)
-        {
-            setShowRentButton(true);
-        } else {
-            setShowRentButton(false);
-        }
-    }, [bikeId])
+    // useEffect(() => {
+    //     if (bikeId.length >=5)
+    //     {
+    //         setShowRentButton(true);
+    //     } else {
+    //         setShowRentButton(false);
+    //     }
+    // }, [bikeId])
 
-    useEffect(() => {
-        if (beingRented)
-        {
-            setShowReturnButton(true);
-        } else {
-            setShowReturnButton(false);
-        }
-    }, [beingRented, isLoggedIn])
+    // useEffect(() => {
+    //     if (beingRented)
+    //     {
+    //         setShowReturnButton(true);
+    //     } else {
+    //         setShowReturnButton(false);
+    //     }
+    // }, [beingRented, isLoggedIn])
 
 
     const loginUser = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -64,22 +63,7 @@ export default function Home() {
         </h5>
         <p className="text-sm font-normal text-gray-500 dark:text-gray-400">Välj sak</p>
         <ul className="my-4 space-y-3">
-            <li>
-            <div>Rent status: {beingRented.toString()}</div>
-                    { showRentInput && 
-                    <>
-                        <label htmlFor="bike" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Cykel-ID (5 första tecken)</label>
-                        <input onChange={(e) => setBikeId(e.target.value)}
-                            type="bike" id="bike" className="bg-blue-50 border border-gray-300 text-gray-900 text-sm rounded-lg
-                        focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
-                        dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
-                        dark:focus:border-blue-500" placeholder="ab12c" required />
-                    </>
-                    }
-                    {   showRentButton &&
-                        <RentButton bikeId={bikeId} shortId={true} />
-                    }
-            </li>
+
             { !isLoggedIn &&
                 (<li>
                         <button type="submit" onClick={(e) => loginUser(e)} className="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
@@ -88,21 +72,17 @@ export default function Home() {
                         </button>
                     </li>)
             }
-            { isLoggedIn &&
-                   <li>
-                   <Link to="/myrentals" className="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
-                       <svg aria-hidden="true" className="h-5" viewBox="0 0 292 292" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M145.7 291.66C226.146 291.66 291.36 226.446 291.36 146C291.36 65.5541 226.146 0.339844 145.7 0.339844C65.2542 0.339844 0.0400391 65.5541 0.0400391 146C0.0400391 226.446 65.2542 291.66 145.7 291.66Z" fill="#3259A5"/><path d="M195.94 155.5C191.49 179.08 170.8 196.91 145.93 196.91C117.81 196.91 95.0204 174.12 95.0204 146C95.0204 117.88 117.81 95.0897 145.93 95.0897C170.8 95.0897 191.49 112.93 195.94 136.5H247.31C242.52 84.7197 198.96 44.1797 145.93 44.1797C89.6904 44.1797 44.1104 89.7697 44.1104 146C44.1104 202.24 89.7004 247.82 145.93 247.82C198.96 247.82 242.52 207.28 247.31 155.5H195.94Z" fill="white"/></svg>
-                       <span className="flex-1 ms-3 whitespace-nowrap">Visa alla uthyrningar</span>
-                   </Link>
-               </li>}
-
-            <li>
-                <Link to="/map/Göteborg" className="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
-                    <svg aria-hidden="true" className="h-5" viewBox="0 0 292 292" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M145.7 291.66C226.146 291.66 291.36 226.446 291.36 146C291.36 65.5541 226.146 0.339844 145.7 0.339844C65.2542 0.339844 0.0400391 65.5541 0.0400391 146C0.0400391 226.446 65.2542 291.66 145.7 291.66Z" fill="#3259A5"/><path d="M195.94 155.5C191.49 179.08 170.8 196.91 145.93 196.91C117.81 196.91 95.0204 174.12 95.0204 146C95.0204 117.88 117.81 95.0897 145.93 95.0897C170.8 95.0897 191.49 112.93 195.94 136.5H247.31C242.52 84.7197 198.96 44.1797 145.93 44.1797C89.6904 44.1797 44.1104 89.7697 44.1104 146C44.1104 202.24 89.7004 247.82 145.93 247.82C198.96 247.82 242.52 207.28 247.31 155.5H195.94Z" fill="white"/></svg>
-                    <span className="flex-1 ms-3 whitespace-nowrap">Karta</span>
-                </Link>
-            </li>
-            { showReturnButton && 
+            {isLoggedIn &&
+            <>
+                <li>
+                    <RentBikeField/>
+                </li>
+                <li>
+                    <Link to="/myrentals" className="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
+                        <svg aria-hidden="true" className="h-5" viewBox="0 0 292 292" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M145.7 291.66C226.146 291.66 291.36 226.446 291.36 146C291.36 65.5541 226.146 0.339844 145.7 0.339844C65.2542 0.339844 0.0400391 65.5541 0.0400391 146C0.0400391 226.446 65.2542 291.66 145.7 291.66Z" fill="#3259A5"/><path d="M195.94 155.5C191.49 179.08 170.8 196.91 145.93 196.91C117.81 196.91 95.0204 174.12 95.0204 146C95.0204 117.88 117.81 95.0897 145.93 95.0897C170.8 95.0897 191.49 112.93 195.94 136.5H247.31C242.52 84.7197 198.96 44.1797 145.93 44.1797C89.6904 44.1797 44.1104 89.7697 44.1104 146C44.1104 202.24 89.7004 247.82 145.93 247.82C198.96 247.82 242.52 207.28 247.31 155.5H195.94Z" fill="white"/></svg>
+                        <span className="flex-1 ms-3 whitespace-nowrap">Visa alla uthyrningar</span>
+                    </Link>
+                </li>
                 <li>
 
                     <a href="#" className="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
@@ -110,19 +90,16 @@ export default function Home() {
                     <span className="flex-1 ms-3 whitespace-nowrap">Avsluta alla färder</span>
                     </a>
                 </li>
+                <li>
+                    <a href="#" className="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
+                    <svg aria-hidden="true" className="h-4" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M72.0998 0.600098H48.3998H24.5998H0.799805V24.4001V48.2001V49.7001V71.8001V71.9001V95.5001H24.5998V72.0001V71.9001V49.8001V48.3001V24.5001H48.3998H72.1998H95.9998V0.700104H72.0998V0.600098Z" fill="#617BFF"/><path d="M48.5 71.8002H72.1V95.6002H73C79.1 95.6002 84.9 93.2002 89.2 88.9002C93.5 84.6002 95.9 78.8002 95.9 72.7002V48.2002H48.5V71.8002Z" fill="#617BFF"/></svg>
+                    <span className="flex-1 ms-3 whitespace-nowrap">Välj stad</span>
+                    </a>
+                </li>
+            <Logout/>
+            </>
             }
-
-            <li>
-                <a href="#" className="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
-                <svg aria-hidden="true" className="h-4" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M72.0998 0.600098H48.3998H24.5998H0.799805V24.4001V48.2001V49.7001V71.8001V71.9001V95.5001H24.5998V72.0001V71.9001V49.8001V48.3001V24.5001H48.3998H72.1998H95.9998V0.700104H72.0998V0.600098Z" fill="#617BFF"/><path d="M48.5 71.8002H72.1V95.6002H73C79.1 95.6002 84.9 93.2002 89.2 88.9002C93.5 84.6002 95.9 78.8002 95.9 72.7002V48.2002H48.5V71.8002Z" fill="#617BFF"/></svg>
-                <span className="flex-1 ms-3 whitespace-nowrap">Välj stad</span>
-                </a>
-            </li>
-        </ul>
-
-        { isLoggedIn &&
-            (<Logout/>)
-        }
+            </ul>
         </div>
   )
 };

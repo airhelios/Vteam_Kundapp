@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { API_URL, getHeader } from '../helpers/config';
 import { toast } from 'react-toastify';
+import { toastOptionsError, toastOptionsSuccess } from '../helpers/config';
 
 
 export type City = {
@@ -47,7 +48,7 @@ export const bikePerCity = async (city: string, token: string, status = '') : Pr
     }
     catch(error: any) {
         console.log(error.response?.data);;
-        toast.error(error.response.data.message)
+        toast.error(error.response.data.message, toastOptionsError)
 
     }
     console.log(data);
@@ -63,7 +64,7 @@ export const allBikes = async ( token:string ) : Promise<any> =>
         }
         catch(error: any) {
             console.log(error.response);
-            toast.error(error.response.data.message)
+            toast.error(error.response.data.message, toastOptionsError)
 
         }
         return data;
@@ -83,7 +84,7 @@ export const rentBike = async (bikeId: string, token: string) : Promise<RentBike
         }
         catch(error: any) {
             console.log(error.response.data.message);
-            toast.error(error.response.data.message)
+            toast.error(error.response.data.message,toastOptionsError)
             console.log(error.response.data);
             data = error.response.data;
         }
@@ -103,7 +104,7 @@ export const returnBike = async (tripID: string | null, token: string) : Promise
             catch(error: any) {
                 console.log(error)
                 console.log(error.response);
-                toast.error(error.response.data.message)
+                toast.error(error.response.data.message, toastOptionsError)
                 data = error.response.data;
             }
             return data;
@@ -124,6 +125,7 @@ export const allRentals = async (userId: string, token: string): Promise<any> =>
 
 export const bikeIdByFive = async (bikeIdFive: string | null, token: string): Promise<string> => {
     const data = await allBikes(token);
-    const bike = await data.find((item: bikeArray) => item.id.startsWith(bikeIdFive?.toLowerCase()));
+    const bike = data.find((item: bikeArray) => item.id.startsWith(bikeIdFive?.toLowerCase()));
+
     return bike.id;
 }

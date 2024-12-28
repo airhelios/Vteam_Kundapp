@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Popup, Marker, Polygon, Tooltip} from 'react-leaflet';
 import { Scooter, Zone } from '../helpers/map/leaflet-types'
-import RentButton from './RentButton';
+import RentButtonMarker from './RentButtonMarker';
 
 
 export default function MarkerBoosted( {id, batteryLevel, latitude, longitude, status} : Scooter) {
@@ -16,7 +16,7 @@ export default function MarkerBoosted( {id, batteryLevel, latitude, longitude, s
             { showRentButton ?
                 <>
                     <p>Status: {status} </p>
-                    <RentButton bikeId={id} showRentButton={showRentButton} setShowRentButton={setShowRentButton}/>
+                    <RentButtonMarker bikeId={id} showRentButton={showRentButton} setShowRentButton={setShowRentButton}/>
                 </>
                 :
                 <p>Status: Was just rented </p>

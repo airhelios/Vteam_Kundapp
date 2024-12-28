@@ -9,25 +9,19 @@ import { toast} from 'react-toastify';
 
 type Props = {
   bikeId: string;
-  shortId?: boolean;
   showRentButton: boolean;
   setShowRentButton: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export default function RentBike( {  shortId = false, bikeId, showRentButton, setShowRentButton }: Props) {
+export default function RentButtonMarker( { bikeId, showRentButton, setShowRentButton }: Props) {
     const { token } = useSelector((state: RootState) =>  state.auth);
-
-    // const [showButton, setShowButton] = useState(true);
 
     const rentBikeId = async (bikeId: string) => {
 
-      if (shortId) {
-        bikeId = await bikeIdByFive(bikeId, token);
-      }
       const data = await rentBike(bikeId, token);
-      if (data.statusCode !== 400)
+      console.log(await data.statusCode);
+      if (data.statusCode === 200)
       {
-
         toast.success(`Bike ${bikeId.slice(0,5)} was rented`, toastOptionsSuccess);
         setShowRentButton(false);
       } else 
