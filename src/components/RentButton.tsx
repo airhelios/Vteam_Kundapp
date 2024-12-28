@@ -7,10 +7,17 @@ import { rentBike, bikeIdByFive } from '../helpers/bike-functions';
 import { toast} from 'react-toastify';
 
 
-export default function RentBike( {  shortId = false, bikeId }: {'bikeId': string; shortId?: boolean}) {
+type Props = {
+  bikeId: string;
+  shortId?: boolean;
+  showRentButton: boolean;
+  setShowRentButton: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export default function RentBike( {  shortId = false, bikeId, showRentButton, setShowRentButton }: Props) {
     const { token } = useSelector((state: RootState) =>  state.auth);
 
-    const [showButton, setShowButton] = useState(true);
+    // const [showButton, setShowButton] = useState(true);
 
     const rentBikeId = async (bikeId: string) => {
 
@@ -22,7 +29,7 @@ export default function RentBike( {  shortId = false, bikeId }: {'bikeId': strin
       {
 
         toast.success(`Bike ${bikeId.slice(0,5)} was rented`, toastOptionsSuccess);
-        setShowButton(false);
+        setShowRentButton(false);
       } else 
       {
         toast.error("Bike was not rented", toastOptionsError);
@@ -31,7 +38,7 @@ export default function RentBike( {  shortId = false, bikeId }: {'bikeId': strin
   
   return (
     <>
-      {showButton &&  
+      {showRentButton &&  
         <div>
             <button type="button" onClick={() => rentBikeId(bikeId)} className="text-white bg-blue-700 hover:bg-blue-800
             focus:ring-4 focus:ring-blue-300font-medium rounded-lg text-sm px-5 py-2.5

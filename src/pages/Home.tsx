@@ -4,7 +4,7 @@ import { RootState, AppDispatch } from '../redux/store/store';
 import Logout from '../components/Logout';
 import { Link } from 'react-router-dom';
 import RentButton from '../components/RentButton';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 
 // Issues:
