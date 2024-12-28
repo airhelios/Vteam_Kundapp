@@ -20,7 +20,7 @@ export default function Map() {
     const [scooterData, setScooterData] = useState<Scooter[]>([]);
     const [zoneData, setZoneData] = useState<Zone[]>([]);
     const zoom = 11;
-    const stationPositions: LatLngTuple[] = [[51.505, -0.04],[51.515, -0.15],[51.535, -0.08]];
+    // const stationPositions: LatLngTuple[] = [[51.505, -0.04],[51.515, -0.15],[51.535, -0.08]];
     const { token } = useSelector((state: RootState) => state.auth);
 
     useEffect(() => {

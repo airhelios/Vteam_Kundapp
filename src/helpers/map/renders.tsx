@@ -12,7 +12,7 @@ const renderScooterMarkers = (scooterData: Scooter[])=>   (
             <p>Id: { scooter.id} </p>
             <p>BatteryLevel: { scooter.batteryLevel} </p>
             <p>Status: { scooter.status} </p>
-            <RentButton bikeId={scooter.id}/>
+            <RentButton key={index} bikeId={scooter.id}/>
         </Popup>
     </Marker>))
     );

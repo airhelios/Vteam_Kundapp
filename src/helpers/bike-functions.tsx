@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from 'axios';
+import axios from 'axios';
 import { API_URL, getHeader } from '../helpers/config';
 import { toast } from 'react-toastify';
 
