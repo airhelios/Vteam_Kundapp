@@ -5,6 +5,7 @@ import ShowMap from './pages/ShowMap';
 import { ToastContainer } from 'react-toastify';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import MyRentals from './pages/MyRentals';
 
 
 function App() {
@@ -16,7 +17,8 @@ function App() {
         <Route path="/adminstartpage" element={<Home />} />
         <Route path="/customerstartpage" element={<Home />} />
         <Route path="github/callback" element={<Github/>} />
-         <Route path="/map/:city" element={<ShowMap/>} />
+        <Route path="/map/:city" element={<ShowMap/>} />
+        <Route path="/myrentals" element={<MyRentals/>} />
         {/*<Route path="/user/:githubId" element={<AdminUserOverviewPage />} />
         <Route path="/adminmapnavigation" element={<AdminMapNavigation />} /> */}
         </Routes>

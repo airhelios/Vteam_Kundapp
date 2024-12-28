@@ -29,15 +29,14 @@ export default function Map() {
         }
     }, [city]);
     
-
     useEffect(() => {
         const fetchScooters = async() => {
         try {
                 if (city) {
-                    const response = await axios.get(`${API_URL}/bike/city/${city}`);
-                    console.log(response.data)
-                    bikePerCity(city, token, 'Available')
-                    setScooterData(response.data);
+                    // const response = await axios.get(`${API_URL}/bike/city/${city}`);
+                    // console.log(response.data)
+                    const data = await bikePerCity(city, token, 'Available')
+                    setScooterData(data);
                 }
             }
 
@@ -48,21 +47,20 @@ export default function Map() {
       fetchScooters();
       },[])
     
-      useEffect(() => {
-        const fetchZones = async() => {
-        try {
+    useEffect(() => {
+    const fetchZones = async() => {
+    try {
 
-                const response = await axios.get(`${API_URL}/zone/city/${city}`);
-                setZoneData(response.data);
-            }
-            catch(error)
-            {
-            }
-      }
-      fetchZones();
-      },[])
+            const response = await axios.get(`${API_URL}/zone/city/${city}`);
+            setZoneData(response.data);
+        }
+        catch(error)
+        {
+        }
+    }
+    fetchZones();
+    },[])
 
-    
   return (
     <div id="map" 
     data-testid="map"
@@ -80,7 +78,7 @@ export default function Map() {
             />
             <MapCenter center={startPosition} zoom={zoom} />
             { renderScooterMarkers(scooterData) }
-            { renderStationMarkers(stationPositions) }
+            {/* { renderStationMarkers(stationPositions) } */}
             { renderPolygons(zoneData) }
             
         </MapContainer>

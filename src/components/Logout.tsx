@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { setLoggedInOut, setCurrentUser, setToken, setRole } from '../redux/slices/authLogin';
+import { setBikeId, setRentStatus, setStartTime, setUser, setTripID } from '../redux/slices/rentSlice';
 import { useNavigate } from "react-router-dom";
 
 export default function Logout() {
@@ -13,6 +14,11 @@ export default function Logout() {
         dispatch(setCurrentUser(null));
         dispatch(setToken(''));
         dispatch(setRole('customer'));
+        dispatch(setBikeId(null));
+        dispatch(setRentStatus(false));
+        dispatch(setStartTime(null));
+        dispatch(setUser(null));
+        dispatch(setTripID(null));
         navigate('/')
         console.log("Header here");
     }

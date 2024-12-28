@@ -50,6 +50,7 @@ export const bikePerCity = async (city: string, token: string, status = '') : Pr
         toast.error(error.response.data.message)
 
     }
+    console.log(data);
     return data;
 }
 
@@ -106,6 +107,19 @@ export const returnBike = async (tripID: string | null, token: string) : Promise
                 data = error.response.data;
             }
             return data;
+}
+
+
+export const allRentals = async (userId: string, token: string): Promise<any> => {
+    let data = {};
+    try {
+        const response = await axios.get(`${API_URL}/rental/`, getHeader(token));
+        data = response.data.filter((item: any)  => item.customer.username === userId);
+    } catch(error)
+    {
+        console.log(`No rentals found for user ${userId}`);
+    }
+    return data;
 }
 
 export const bikeIdByFive = async (bikeIdFive: string | null, token: string): Promise<string> => {
