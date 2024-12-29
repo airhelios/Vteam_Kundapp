@@ -111,17 +111,34 @@ export const returnBike = async (tripID: string | null, token: string) : Promise
 }
 
 
-export const allRentals = async (userId: string, token: string): Promise<any> => {
+// export const allRentals = async (userId: string, token: string): Promise<any> => {
+//     let data = {};
+//     try {
+//         const response = await axios.get(`${API_URL}/rental/`, getHeader(token));
+//         data = response.data.filter((item: any)  => item.customer.username === userId);
+//     } catch(error)
+//     {
+//         console.log(`No rentals found for user ${userId}`);
+//     }
+//     return data;
+// }
+
+export const allRentals = async (token: string): Promise<any> => {
     let data = {};
     try {
-        const response = await axios.get(`${API_URL}/rental/`, getHeader(token));
-        data = response.data.filter((item: any)  => item.customer.username === userId);
+        let me = await axios.get(`${API_URL}/auth/me`, getHeader(token));
+        let userId = me.data.githubId;
+        const response = await axios.get(`${API_URL}/rental/customer/${userId}`, getHeader(token));
+        console.log(userId)
+        // data = response.data.filter((item: any)  => item.customer.username === userId);
+        data = response.data;
     } catch(error)
     {
         console.log(`No rentals found for user ${userId}`);
     }
     return data;
 }
+
 
 export const bikeIdByFive = async (bikeIdFive: string | null, token: string): Promise<string> => {
     const data = await allBikes(token);
