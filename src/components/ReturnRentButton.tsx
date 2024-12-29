@@ -12,11 +12,12 @@ function ReturnRentButton( {tripID}  : {tripID: 'string'}) {
     const [stopTime, setStopTime] = useState('2024-12-28T13:01:50.801Z')
     const returnBikeId = async (tripID: string) => {
         const data = await returnBike(tripID, token);
-        if (data.statusCode !== 400)
+        console.log(data);
+        if (data.statusCode === 200)
         {
           toast.success(`Trip: ${tripID} has been ended.`, toastOptionsSuccess);
           setShowTime(true);
-          setStopTime(await data.data.stopTime);
+          setStopTime(data.stopTime || 'Unknown stop time');
         } else 
         {
           toast.error("Bike was not returned", toastOptionsError);
