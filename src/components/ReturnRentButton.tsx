@@ -5,7 +5,7 @@ import { toastOptionsError, toastOptionsSuccess } from '../helpers/config';
 import { returnBike } from '../helpers/bike-functions';
 import { toast} from 'react-toastify';
 
-function ReturnRentButton( {tripID}  : {tripID: 'string'}) {
+function ReturnRentButton( {tripID}  : {tripID: string}) {
 
     const { token } = useSelector((state: RootState) =>  state.auth);
     const [showTime, setShowTime] = useState(false);
@@ -29,14 +29,14 @@ function ReturnRentButton( {tripID}  : {tripID: 'string'}) {
 
   return showTime ?
     (<>
-        <span className="font-semibold text-gray-600 dark:text-gray-300">Stop time:</span>
+        <span data-testid="returnrentbutton" className="font-semibold text-gray-600 dark:text-gray-300">Stop time:</span>
         <span className="ml-2 text-gray-800 dark:text-white">{stopTime}</span>
         <span className="font-semibold text-gray-600 dark:text-gray-300"> Kostnad:</span>
         <span className="ml-2 text-gray-800 dark:text-white">{cost} krosek</span>
      </>)
     :
     (
-      <button type="button" onClick={async () => await returnBikeId(tripID)} className="text-white bg-blue-700 hover:bg-blue-800
+      <button data-testid="returnrentbutton" type="button" onClick={async () => await returnBikeId(tripID)} className="text-white bg-blue-700 hover:bg-blue-800
       focus:ring-4 focus:ring-blue-300font-medium rounded-lg text-sm px-5 py-2.5
       me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none
       dark:focus:ring-blue-800">

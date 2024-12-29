@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
-import {renderWithProviders } from '../helpers/test-redux';
-import RentBikeField from './RentBikeField';
+import {renderWithProviders } from '../../helpers/test-redux';
+import RentFieldButton from '../../components/RentFieldButton';
 
-describe('RentBikeField', () => {
-  it('renders RentBikeField component', () => {
+describe('RentFieldButton', () => {
+  it('renders RentFieldButtoncomponent', () => {
     const preloadedState = {
         auth: {
           isLoggedIn: true,
@@ -20,7 +20,7 @@ describe('RentBikeField', () => {
             tripID: 5
         },
       };
-    render(renderWithProviders( <RentBikeField/>, preloadedState));
-    expect(screen.getByTestId("rentbikefield")).toBeInTheDocument();
+    render(renderWithProviders( <RentFieldButton shortId="test"/>, preloadedState));
+    expect(screen.getByTestId("rentfieldbutton")).toBeInTheDocument();
   });
 });

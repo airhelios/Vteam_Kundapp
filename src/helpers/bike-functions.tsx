@@ -134,7 +134,7 @@ export const allRentals = async (token: string): Promise<any> => {
         data = response.data;
     } catch(error)
     {
-        console.log(`No rentals found for user ${userId}`);
+        console.log(`No rentals found for user`);
     }
     return data;
 }

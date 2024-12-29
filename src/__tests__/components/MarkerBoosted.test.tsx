@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import {renderWithProviders } from '../helpers/test-redux';
-import MarkerBoosted from '../components/MarkerBoosted';
+import {renderWithProviders } from '../../helpers/test-redux';
+import MarkerBoosted from '../../components/MarkerBoosted';
 
 describe('MarkerBoosted', () => {
   it('renders MarkerBoosted component', () => {
