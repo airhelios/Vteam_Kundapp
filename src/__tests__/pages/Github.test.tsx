@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import Github from '../pages/Github';
-import {renderWithProviders } from '../helpers/test-redux';
+import Github from '../../pages/Github';
+import {renderWithProviders } from '../../helpers/test-redux';
 import { MemoryRouter as Router } from "react-router-dom";
 
 

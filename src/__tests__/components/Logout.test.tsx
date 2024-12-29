@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import Logout from '../components/Logout';
-import {renderWithProviders } from '../helpers/test-redux';
+import Logout from '../../components/Logout';
+import {renderWithProviders } from '../../helpers/test-redux';
 import { MemoryRouter as Router } from "react-router-dom";
 
 
