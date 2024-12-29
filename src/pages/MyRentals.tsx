@@ -11,9 +11,13 @@ export default function MyRentals() {
   const [rentals, setRentals] = useState<any[]>([]); // Add proper type instead of any
   const navigate = useNavigate();
 
-  if(!isLoggedIn) {
-    navigate('/');
-  }
+
+  useEffect(() => {
+    if(!isLoggedIn) {
+      navigate('/');
+    }
+  },[isLoggedIn, navigate]);
+
 
   useEffect(() => {
     const getRentals = async () => {
@@ -28,9 +32,8 @@ export default function MyRentals() {
 
   return (
     <div>
-    <div>MyRentals</div>
+    <div data-testid="my-rentals">MyRentals</div>
       <ul>
-          {/* Render your rentals data here */}
           {rentals.map((rental, index) => (
           <li key={index} className="flex flex-wrap items-center gap-4 p-4 mb-4 bg-gray-50 rounded-lg shadow dark:bg-gray-700">
           <div className="flex items-center">

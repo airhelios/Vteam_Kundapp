@@ -1,9 +1,7 @@
-
-import { useState } from 'react';
 import {  useSelector } from 'react-redux';
 import { RootState } from '../redux/store/store';
 import { toastOptionsError, toastOptionsSuccess } from '../helpers/config';
-import { rentBike, bikeIdByFive } from '../helpers/bike-functions';
+import { rentBike } from '../helpers/bike-functions';
 import { toast} from 'react-toastify';
 
 

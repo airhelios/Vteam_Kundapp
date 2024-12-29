@@ -22,35 +22,6 @@ export default function Home() {
     const [showRentButton, setShowRentButton] = useState(false);
     const [showReturnButton, setShowReturnButton] = useState(false);
 
-
-    // useEffect(() => {
-    //     if (!beingRented && isLoggedIn)
-    //     {
-    //         setShowRentInput(true);
-    //     } else {
-    //         setShowRentInput(false);
-    //     }
-    // }, [beingRented, isLoggedIn])
-
-    // useEffect(() => {
-    //     if (bikeId.length >=5)
-    //     {
-    //         setShowRentButton(true);
-    //     } else {
-    //         setShowRentButton(false);
-    //     }
-    // }, [bikeId])
-
-    // useEffect(() => {
-    //     if (beingRented)
-    //     {
-    //         setShowReturnButton(true);
-    //     } else {
-    //         setShowReturnButton(false);
-    //     }
-    // }, [beingRented, isLoggedIn])
-
-
     const loginUser = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         window.location.href = GITHUB_URL;
