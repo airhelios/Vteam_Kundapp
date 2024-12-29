@@ -10,6 +10,7 @@ function ReturnRentButton( {tripID}  : {tripID: 'string'}) {
     const { token } = useSelector((state: RootState) =>  state.auth);
     const [showTime, setShowTime] = useState(false);
     const [stopTime, setStopTime] = useState('2024-12-28T13:01:50.801Z')
+    const [cost, setCost] = useState(0)
     const returnBikeId = async (tripID: string) => {
         const data = await returnBike(tripID, token);
         console.log(data);
@@ -18,6 +19,7 @@ function ReturnRentButton( {tripID}  : {tripID: 'string'}) {
           toast.success(`Trip: ${tripID} has been ended.`, toastOptionsSuccess);
           setShowTime(true);
           setStopTime(data.stopTime || 'Unknown stop time');
+          setCost(data.cost);
         } else 
         {
           toast.error("Bike was not returned", toastOptionsError);
@@ -29,6 +31,8 @@ function ReturnRentButton( {tripID}  : {tripID: 'string'}) {
     (<>
         <span className="font-semibold text-gray-600 dark:text-gray-300">Stop time:</span>
         <span className="ml-2 text-gray-800 dark:text-white">{stopTime}</span>
+        <span className="font-semibold text-gray-600 dark:text-gray-300"> Kostnad:</span>
+        <span className="ml-2 text-gray-800 dark:text-white">{cost} krosek</span>
      </>)
     :
     (

@@ -18,7 +18,7 @@ export default function MyRentals() {
   useEffect(() => {
     const getRentals = async () => {
         if (user && token) {
-            const rentalData = await allRentals(user, token);
+            const rentalData = await allRentals(token);
             setRentals(rentalData.reverse());
             console.log(rentalData);
         }
@@ -50,6 +50,8 @@ export default function MyRentals() {
           <div className="flex items-center">
               <span className="font-semibold text-gray-600 dark:text-gray-300">Stop time:</span>
               <span className="ml-2 text-gray-800 dark:text-white">{rental.stopTime ?? "Still going"}</span>
+              <span className="font-semibold text-gray-600 dark:text-gray-300"> Kostnad:</span>
+              <span className="ml-2 text-gray-800 dark:text-white">{rental.cost} krosek</span>
           </div>
           }
           </li>
