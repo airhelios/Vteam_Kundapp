@@ -16,7 +16,7 @@ function ReturnRentButton( {tripID}  : {tripID: 'string'}) {
         {
           toast.success(`Trip: ${tripID} has been ended.`, toastOptionsSuccess);
           setShowTime(true);
-          setStopTime(data.data.stopTime);
+          setStopTime(await data.data.stopTime);
         } else 
         {
           toast.error("Bike was not returned", toastOptionsError);

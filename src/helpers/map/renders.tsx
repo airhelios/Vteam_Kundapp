@@ -2,7 +2,7 @@ import { Popup, Marker, Polygon, Tooltip} from 'react-leaflet';
 import { Scooter, Zone } from './leaflet-types'
 import { LatLngTuple } from 'leaflet';
 import { iconStation } from '../config';
-import RentButton from '../../components/RentButton';
+import RentButtonMarker from '../../components/RentButtonMarker';
 import MarkerBoosted from '../../components/MarkerBoosted';
 
 
@@ -20,7 +20,7 @@ import MarkerBoosted from '../../components/MarkerBoosted';
 
 const renderScooterMarkers = (scooterData: Scooter[])=>   (
     scooterData?.map((scooter, index) => (
-        <MarkerBoosted id={scooter.id} batteryLevel={scooter.batteryLevel}
+        <MarkerBoosted key={index} id={scooter.id} batteryLevel={scooter.batteryLevel}
         status={scooter.status} latitude={scooter.latitude} longitude={scooter.longitude} />
     ))
     );
