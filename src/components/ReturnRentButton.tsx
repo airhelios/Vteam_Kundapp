@@ -1,5 +1,5 @@
 import { useState, useEffect, useDebugValue} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store/store';
 import { toastOptionsError, toastOptionsSuccess } from '../helpers/config';
 import { returnBike } from '../helpers/bike-functions';

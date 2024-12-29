@@ -9,7 +9,8 @@ export default function MarkerBoosted( {id, batteryLevel, latitude, longitude, s
 
 
     return (
-        <Marker position={[latitude, longitude]}>
+        <Marker position={[latitude, longitude] }>
+        <div data-testid="marker"></div>
         <Popup>
             <p>Id: {id} </p>
             <p>BatteryLevel: {batteryLevel} </p>
