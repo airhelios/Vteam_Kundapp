@@ -5,12 +5,13 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { allRentals } from '../helpers/bike-functions';
 import ReturnRentButton from '../components/ReturnRentButton';
+import ReturnAllRentalsButton from '../components/ReturnAllRentalsButton';
 
 export default function MyRentals() {
   const { isLoggedIn, user, token } = useSelector((state: RootState) =>  state.auth);
-  const [rentals, setRentals] = useState<any[]>([]); // Add proper type instead of any
+  const [rentals, setRentals] = useState<any[]>([]);
   const navigate = useNavigate();
-
+  const [refreshTrigger, setRefreshTrigger] = useState(0);
 
   useEffect(() => {
     if(!isLoggedIn) {
@@ -22,19 +23,32 @@ export default function MyRentals() {
   useEffect(() => {
     const getRentals = async () => {
         if (user && token) {
-            const rentalData = await allRentals(token);
-            setRentals(rentalData.reverse());
-            console.log(rentalData);
+
+            setRentals([]);
+            setTimeout(async () => {
+              const rentalData = await allRentals(token);
+              rentalData.reverse()
+              setRentals(rentalData)}
+              , 100);
+
         }
     };
     getRentals();
-  }, [user, token]);
+  }, [user, token, refreshTrigger]);
+
+
 
   return (
     <div>
-    <div data-testid="my-rentals">MyRentals</div>
+    <div data-testid="my-rentals">Mina resor</div>
+    <div onClick={() => setRefreshTrigger(refreshTrigger*-1)}>
+    <ReturnAllRentalsButton className="text-white bg-blue-700 hover:bg-blue-800
+      focus:ring-4 focus:ring-blue-300font-medium rounded-lg text-sm px-5 py-2.5
+      me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none
+      dark:focus:ring-blue-800"/>
+      </div>
       <ul>
-          {rentals.map((rental, index) => (
+          { rentals.map((rental, index) => (
           <li key={index} className="flex flex-wrap items-center gap-4 p-4 mb-4 bg-gray-50 rounded-lg shadow dark:bg-gray-700">
           <div className="flex items-center">
               <span className="font-semibold text-gray-600 dark:text-gray-300">ID:</span>
@@ -58,7 +72,7 @@ export default function MyRentals() {
           </div>
           }
           </li>
-          ))}
+          )) }
       </ul>
     </div>
   )
