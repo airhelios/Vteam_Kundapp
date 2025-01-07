@@ -19,7 +19,8 @@ export default {
     "!src/module_typings/**"
   ],
   "coverageDirectory": "coverage",
-  "coverageReporters": ["text", "lcov",["clover", { "file": "coverage/clover.xml" }]],
+  "coverageReporters": ["text", "lcov",
+    ["clover", { "file": "./clover.xml" }]],
   extensionsToTreatAsEsm: [".ts", ".tsx"], // Treat TypeScript files as ESM
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
 };

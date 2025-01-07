@@ -42,7 +42,6 @@ checks:
 build:
   nodes:
     - name: kundapp
-      root_path: './'
       project_setup:
         before:
           - nvm install 17
