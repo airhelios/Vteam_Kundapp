@@ -17,7 +17,6 @@ const zoneColors = (zoneType: string) => {
     }
 }
 
-
 const renderScooterMarkers = (scooterData: Scooter[])=>   (
     scooterData?.map((scooter, index) => (
         <MarkerBoosted key={index} id={scooter.id} batteryLevel={scooter.batteryLevel}
