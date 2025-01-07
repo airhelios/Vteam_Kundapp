@@ -2,7 +2,7 @@
 
 // dotenv.config();
 const port = parseInt(import.meta.env.VITE_PORT || "3000")
-export const API_URL = "http://localhost:3535";
+export const API_URL = "http://localhost:3535/v1";
 const githubAuthUrl = 'https://github.com/login/oauth/authorize';
 const clientId = 'Ov23liY1kaJ2acYLtBhq';
 const redirectUri = `http://localhost:${port}/github/callback`;
