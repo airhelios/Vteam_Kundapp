@@ -39,36 +39,45 @@ export default function MyRentals() {
 
 
   return (
+    <div className='max-w-[250px]'>
     <div>
-    <div data-testid="my-rentals">Mina resor</div>
+    
     <div onClick={() => setRefreshTrigger(refreshTrigger*-1)}>
     <ReturnAllRentalsButton className="text-white bg-blue-700 hover:bg-blue-800
-      focus:ring-4 focus:ring-blue-300font-medium rounded-lg text-sm px-5 py-2.5
-      me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none
+      focus:ring-4 focus:ring-blue-300font-large text-lg rounded-lg text-sm m-5 px-10 py-5
+      dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none
       dark:focus:ring-blue-800"/>
       </div>
+      </div>
+      <div data-testid="my-rentals">
+        <h2 className="text-2xl font-bold text-gray-900"> Mina resor </h2> 
+        </div>
       <ul>
           { rentals.map((rental, index) => (
-          <li key={index} className="flex flex-wrap items-center gap-4 p-4 mb-4 bg-gray-50 rounded-lg shadow dark:bg-gray-700">
-          <div className="flex items-center">
-              <span className="font-semibold text-gray-600 dark:text-gray-300">ID:</span>
-              <span className="ml-2 text-gray-800 dark:text-white">{rental.id}</span>
+          <li key={index} className="flex flex-col items-center gap-4 p-4 mb-6 bg-gray-50 rounded-lg shadow-xl dark:bg-gray-700">
+          <div className="flex items-center bg-blue-400 p-2 rounded-lg text-white">
+              <span className="font-semibold">Bike ID:</span>
+              <span className="ml-2">{rental.id}</span>
           </div>
-          <div className="flex items-center">
+          <div className="flex items-center flex-col">
               <span className="font-semibold text-gray-600 dark:text-gray-300">Start time:</span>
-              <span className="ml-2 text-gray-800 dark:text-white">{rental.startTime}</span>
+              <span className="text-gray-800 dark:text-white">{rental.startTime}</span>
           </div>
           {!rental.stopTime && 
-          <div className="flex items-center">
+          <div className="flex items-center flex-col">
               <ReturnRentButton tripID={rental.id}/>
               </div>
           } 
           {rental.stopTime && 
-          <div className="flex items-center">
+          <div className="flex items-center flex-col">
               <span className="font-semibold text-gray-600 dark:text-gray-300">Stop time:</span>
-              <span className="ml-2 text-gray-800 dark:text-white">{rental.stopTime ?? "Still going"}</span>
-              <span className="font-semibold text-gray-600 dark:text-gray-300"> Kostnad:</span>
-              <span className="ml-2 text-gray-800 dark:text-white">{rental.cost} krosek</span>
+              <span className="text-gray-800 dark:text-white">{rental.stopTime ?? "Still going"}</span>
+              <span className="mt-2 font-semibold text-gray-600 dark:text-gray-300"> Kostnad:</span>
+              {/* <span className="ml-2 text-gray-800 dark:text-white">{rental.cost} krosek</span> */}
+              <span className="text-gray-800 dark:text-white">
+              {parseFloat(rental.cost).toFixed(2)} kr
+          </span>
+
           </div>
           }
           </li>
