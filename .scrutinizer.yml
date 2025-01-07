@@ -41,7 +41,7 @@ checks:
 
 build:
   nodes:
-    kundapp:
+    - name: kundapp
       root_path: './'
       project_setup:
         before:
