@@ -60,17 +60,17 @@ export default function Home() {
                         <span className="flex-1 ms-3 whitespace-nowrap">Uthyrningar</span>
                     </Link>
                 </li>
-                <li className="md:col-span-1 lg:col-span-1 sm:col-span-3">
+                <li className="col-span-3 sm:col-span-3 md:col-span-1 lg:col-span-1">
                     <Link to="/map/Göteborg" className="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
                         <span className="flex-1 ms-3 whitespace-nowrap">Göteborg</span>
                     </Link>
                 </li>
-                <li className="md:col-span-1 lg:col-span-1 sm:col-span-3">
+                <li className="col-span-3 sm:col-span-3 md:col-span-1 lg:col-span-1">
                     <Link to="/map/Jönköping" className="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
                         <span className="flex-1 ms-3 whitespace-nowrap">Jönköping</span>
                     </Link>
                 </li>
-                <li className="md:col-span-1 lg:col-span-1 sm:col-span-3">
+                <li className="col-span-3 sm:col-span-3 md:col-span-1 lg:col-span-1">
                     <Link to="/map/Karlshamn" className="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
                         
                         <span className="flex-1 ms-3 whitespace-nowrap">Karlshamn</span>
@@ -89,4 +89,3 @@ export default function Home() {
         </div>
   )
 };
-
