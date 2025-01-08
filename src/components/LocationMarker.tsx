@@ -14,7 +14,7 @@ export default function LocationMarker() {
         useEffect(() => {
           map.locate().on("locationfound", function (e: L.LocationEvent) {
             setPosition(e.latlng);
-            map.flyTo(e.latlng, map.getZoom());
+            // map.flyTo(e.latlng, map.getZoom());
             const radius = e.accuracy;
             const circle = L.circle(e.latlng, radius);
             circle.addTo(map);
