@@ -6,6 +6,8 @@ import { useSelector } from 'react-redux';
 import { allRentals } from '../helpers/bike-functions';
 import ReturnRentButton from '../components/ReturnRentButton';
 import ReturnAllRentalsButton from '../components/ReturnAllRentalsButton';
+import { Badge } from "flowbite-react";
+
 
 export default function MyRentals() {
   const { isLoggedIn, user, token } = useSelector((state: RootState) =>  state.auth);
@@ -36,27 +38,39 @@ export default function MyRentals() {
     getRentals();
   }, [user, token, refreshTrigger]);
 
+  function formatTimestamp(isoString: string) {
+    const date = new Date(isoString);
+    const yyyy = date.getFullYear();
+    const mm = String(date.getMonth() + 1).padStart(2, '0');
+    const dd = String(date.getDate()).padStart(2, '0');
+    const hh = String(date.getHours()).padStart(2, '0');
+    const min = String(date.getMinutes()).padStart(2, '0');
+    const ss = String(date.getSeconds()).padStart(2, '0');
 
+    return `${yyyy}-${mm}-${dd} ${hh}:${min}:${ss}`;
+}
 
   return (
     <div>
-    <div data-testid="my-rentals">Mina resor</div>
+    <div data-testid="my-rentals"><h1 className="text-2xl text-gray-900 dark:text-white">
+    Mina resor
+</h1></div>
     <div onClick={() => setRefreshTrigger(refreshTrigger*-1)}>
-    <ReturnAllRentalsButton className="text-white bg-blue-700 hover:bg-blue-800
-      focus:ring-4 focus:ring-blue-300font-medium rounded-lg text-sm px-5 py-2.5
-      me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none
-      dark:focus:ring-blue-800"/>
+    <ReturnAllRentalsButton className="w-full text-white my-5 bg-blue-500 hover:bg-blue-700
+  focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5
+  me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none
+  dark:focus:ring-blue-800"/>
       </div>
       <ul>
           { rentals.map((rental, index) => (
           <li key={index} className="flex flex-wrap items-center gap-4 p-4 mb-4 bg-gray-50 rounded-lg shadow dark:bg-gray-700">
           <div className="flex items-center">
               <span className="font-semibold text-gray-600 dark:text-gray-300">ID:</span>
-              <span className="ml-2 text-gray-800 dark:text-white">{rental.id}</span>
+              <span className="ml-2 text-gray-800 dark:text-white"><Badge color="indigo">{rental.id}</Badge></span>
           </div>
           <div className="flex items-center">
               <span className="font-semibold text-gray-600 dark:text-gray-300">Start time:</span>
-              <span className="ml-2 text-gray-800 dark:text-white">{rental.startTime}</span>
+              <span className="ml-2 text-gray-800 dark:text-white"><Badge color="success">{formatTimestamp(rental.startTime)}</Badge></span>
           </div>
           {!rental.stopTime && 
           <div className="flex items-center">
@@ -66,9 +80,9 @@ export default function MyRentals() {
           {rental.stopTime && 
           <div className="flex items-center">
               <span className="font-semibold text-gray-600 dark:text-gray-300">Stop time:</span>
-              <span className="ml-2 text-gray-800 dark:text-white">{rental.stopTime ?? "Still going"}</span>
+              <span className="ml-2 text-gray-800 dark:text-white"><Badge color="pink">{formatTimestamp(rental.stopTime) ?? "Still going"}</Badge></span>
               <span className="font-semibold text-gray-600 dark:text-gray-300"> Kostnad:</span>
-              <span className="ml-2 text-gray-800 dark:text-white">{rental.cost} krosek</span>
+              <span className="ml-2 text-gray-800 dark:text-white"><Badge>{rental.cost.toFixed(2)} SEK</Badge></span>
           </div>
           }
           </li>
