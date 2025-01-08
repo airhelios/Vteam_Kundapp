@@ -1,27 +1,13 @@
 import { GITHUB_URL } from '../helpers/config';
-import { useState, useEffect } from 'react';
-import { RootState, AppDispatch } from '../redux/store/store';
+import { RootState } from '../redux/store/store';
 import Logout from '../components/Logout';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import RentBikeField from '../components/RentBikeField';
 import ReturnAllRentalsButton from '../components/ReturnAllRentalsButton';
 
-// Issues:
-// Om man skriver fel id när man ska hyra cykel så hänger den sig
-// Redux-state på beingRented har fastnat ibland?
-// Logga ut får inte rent-knappen att försvinna
-// Markörerna ändras inte när cykeln hyrs
-// Login: hämta rentstatus från backend
-
-
 export default function Home() {
     const { isLoggedIn } = useSelector((state: RootState) =>  state.auth);
-    const { beingRented } = useSelector((state: RootState) =>  state.rent);
-    const [bikeId, setBikeId] = useState("");
-    const [showRentInput, setShowRentInput] = useState(false);
-    const [showRentButton, setShowRentButton] = useState(false);
-    const [showReturnButton, setShowReturnButton] = useState(false);
 
     const loginUser = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
@@ -60,17 +46,17 @@ export default function Home() {
                         <span className="flex-1 ms-3 whitespace-nowrap">Uthyrningar</span>
                     </Link>
                 </li>
-                <li className="md:col-span-1 lg:col-span-1 sm:col-span-3">
+                <li className="col-span-3 sm:col-span-3 md:col-span-1 lg:col-span-1">
                     <Link to="/map/Göteborg" className="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
                         <span className="flex-1 ms-3 whitespace-nowrap">Göteborg</span>
                     </Link>
                 </li>
-                <li className="md:col-span-1 lg:col-span-1 sm:col-span-3">
+                <li className="col-span-3 sm:col-span-3 md:col-span-1 lg:col-span-1">
                     <Link to="/map/Jönköping" className="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
                         <span className="flex-1 ms-3 whitespace-nowrap">Jönköping</span>
                     </Link>
                 </li>
-                <li className="md:col-span-1 lg:col-span-1 sm:col-span-3">
+                <li className="col-span-3 sm:col-span-3 md:col-span-1 lg:col-span-1">
                     <Link to="/map/Karlshamn" className="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
                         
                         <span className="flex-1 ms-3 whitespace-nowrap">Karlshamn</span>
@@ -89,4 +75,3 @@ export default function Home() {
         </div>
   )
 };
-
