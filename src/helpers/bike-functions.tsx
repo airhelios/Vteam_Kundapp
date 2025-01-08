@@ -1,7 +1,7 @@
 import axios, { AxiosError } from 'axios';
 import { API_URL, getHeader } from '../helpers/config';
 import { toast } from 'react-toastify';
-import { toastOptionsError, toastOptionsSuccess } from '../helpers/config';
+import { toastOptionsError } from '../helpers/config';
 
 
 export type City = {

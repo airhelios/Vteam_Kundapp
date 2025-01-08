@@ -11,6 +11,7 @@ import { renderScooterMarkers, renderPolygons } from '../helpers/map/renders';
 import { bikePerCity } from '../helpers/bike-functions';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store/store';
+import LocationMarker from './LocationMarker';
 
 
 export default function Map() {
@@ -80,7 +81,8 @@ export default function Map() {
             { renderScooterMarkers(scooterData) }
             {/* { renderStationMarkers(stationPositions) } */}
             { renderPolygons(zoneData) }
-            
+            <LocationMarker />
+
         </MapContainer>
     </div>
   )
