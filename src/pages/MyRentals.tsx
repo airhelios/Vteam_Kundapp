@@ -7,6 +7,7 @@ import { allRentals } from '../helpers/bike-functions';
 import ReturnRentButton from '../components/ReturnRentButton';
 import ReturnAllRentalsButton from '../components/ReturnAllRentalsButton';
 import { Badge } from "flowbite-react";
+import Logo from '../components/Logo';
 
 
 export default function MyRentals() {
@@ -52,6 +53,7 @@ export default function MyRentals() {
 
   return (
     <div>
+      <Logo/>
     <div data-testid="my-rentals"><h1 className="text-2xl text-gray-900 dark:text-white">
     Mina resor
 </h1></div>

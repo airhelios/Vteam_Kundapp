@@ -1,13 +1,13 @@
-import { MapContainer, Popup, Marker, TileLayer, Polygon, Tooltip} from 'react-leaflet';
-import { useEffect, useState, useRef } from 'react';
-import { LatLngTuple,  LatLngExpression } from 'leaflet';
+import { MapContainer,  TileLayer } from 'react-leaflet';
+import { useEffect, useState } from 'react';
+import {LatLngExpression } from 'leaflet';
 import { API_URL } from '../helpers/config';
 import axios from 'axios';
 import { Scooter, Zone } from '../helpers/map/leaflet-types'
 import { useParams } from "react-router-dom";
 import { cities } from '../helpers/map/cities';
 import MapCenter from './MapCenter';
-import { renderScooterMarkers, renderStationMarkers, renderPolygons } from '../helpers/map/renders';
+import { renderScooterMarkers, renderPolygons } from '../helpers/map/renders';
 import { bikePerCity } from '../helpers/bike-functions';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store/store';

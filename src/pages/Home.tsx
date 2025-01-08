@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import RentBikeField from '../components/RentBikeField';
 import ReturnAllRentalsButton from '../components/ReturnAllRentalsButton';
+import Logo from '../components/Logo';
 
 export default function Home() {
     const { isLoggedIn } = useSelector((state: RootState) =>  state.auth);
@@ -17,10 +18,7 @@ export default function Home() {
   return (
 
         <div data-testid="Home" className="min-h-screen w-full max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl m-0 bg-white rounded-lg dark:bg-gray-800">
-
-        <h5 className="mb-20 pb-3 w-full rounded-b-lg text-base md:text-lg lg:text-xl font-semibold text-gray-900 dark:text-white bg-purple-100">
-        Kund App Svenska Elsparkcyklar AB
-        </h5>
+            <Logo/>
         {/* <ul className="my-4 space-y-3 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 w-full"> */}
         <ul className={`my-4 space-y-3 grid grid-cols-1 gap-4 ${isLoggedIn ? "md:grid-cols-2 lg:grid-cols-3" : ""} w-full`}>
 
