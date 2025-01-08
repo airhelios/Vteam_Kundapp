@@ -50,7 +50,7 @@ export const bikePerCity = async (city: string, token: string, status = '') : Pr
         toast.error(error.response.data.message, toastOptionsError)
 
     }
-    console.log(data);
+    // console.log(data);
     return data;
 }
 

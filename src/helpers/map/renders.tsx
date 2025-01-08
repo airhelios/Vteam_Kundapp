@@ -38,8 +38,8 @@ const renderPolygons = ( zoneData: Zone[] ) =>  (
     zoneData?.map((zone, index) => (
         <Polygon pathOptions={zoneColors(zone.type)} positions={zone.polygon.map(point => [point.lat, point.lng])} key={index}>
             <Tooltip direction="bottom" offset={[0, 20]} opacity={1} >
-                <p>Id: {zone.id}</p>
-                <p>Type: {zone.type}</p>
+                <p>Zone Id: {zone.id}</p>
+                <p>Zone Type: {zone.type}</p>
             </Tooltip>
         </Polygon>
     ))
