@@ -65,14 +65,14 @@ export default function MyRentals() {
       </div>
       <ul>
           { rentals.map((rental, index) => (
-          <li key={index} className="flex flex-wrap items-center gap-4 p-4 mb-4 bg-gray-50 rounded-lg shadow dark:bg-gray-700">
-          <div className="flex items-center">
+          <li key={index} className="flex flex-col flex-wrap items-center gap-4 p-4 mb-4 bg-gray-50 rounded-lg shadow dark:bg-gray-700 sm:flex-row">
+          <div className="flex items-center ">
               <span className="font-semibold text-gray-600 dark:text-gray-300">ID:</span>
-              <span className="ml-2 text-gray-800 dark:text-white"><Badge color="indigo">{rental.id}</Badge></span>
+              <span className="ml-5 text-gray-800 dark:text-white"><Badge color="indigo">{rental.id}</Badge></span>
           </div>
           <div className="flex items-center">
               <span className="font-semibold text-gray-600 dark:text-gray-300">Start time:</span>
-              <span className="ml-2 text-gray-800 dark:text-white"><Badge color="success">{formatTimestamp(rental.startTime)}</Badge></span>
+              <span className="ml-5 text-gray-800 dark:text-white"><Badge color="success">{formatTimestamp(rental.startTime)}</Badge></span>
           </div>
           {!rental.stopTime && 
           <div className="flex items-center">
@@ -80,12 +80,16 @@ export default function MyRentals() {
               </div>
           } 
           {rental.stopTime && 
-          <div className="flex items-center">
-              <span className="font-semibold text-gray-600 dark:text-gray-300">Stop time:</span>
-              <span className="ml-2 text-gray-800 dark:text-white"><Badge color="pink">{formatTimestamp(rental.stopTime) ?? "Still going"}</Badge></span>
-              <span className="font-semibold text-gray-600 dark:text-gray-300"> Kostnad:</span>
-              <span className="ml-2 text-gray-800 dark:text-white"><Badge>{rental.cost.toFixed(2)} SEK</Badge></span>
-          </div>
+            <>
+              <div className="flex items-center">
+                <span className="font-semibold text-gray-600 dark:text-gray-300">Stop time:</span>
+                <span className="ml-5 text-gray-800 dark:text-white"><Badge color="pink">{formatTimestamp(rental.stopTime) ?? "Still going"}</Badge></span>
+              </div>
+              <div className="flex items-center">
+                <span className="font-semibold text-gray-600 dark:text-gray-300"> Kostnad:</span>
+                <span className="ml-5 text-gray-800 dark:text-white"><Badge>{rental.cost.toFixed(2).replace('.', ',')} SEK</Badge></span>
+              </div>
+            </>
           }
           </li>
           )) }
