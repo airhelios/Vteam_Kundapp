@@ -24,12 +24,10 @@ export default function RentBikeField() {
 
     return showField && (
         <div>
-            <label htmlFor="bike" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hyr cykel: Cykel-ID (5 första tecken)</label>
+            <label htmlFor="bike" className="block mb-2 text-sm font-medium text-gray-900">Hyr cykel: Cykel-ID (5 första tecken)</label>
             <input data-testid="rentbikefield" onChange={(e) => setBikeId(e.target.value)}
                 type="bike" id="bike" className="bg-blue-50 border border-gray-300 text-gray-900 text-sm rounded-lg
-                focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
-                dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
-                dark:focus:border-blue-500" placeholder="ab12c" required />
+                focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="ab12c" required />
                 { 
                     showRentButton &&
                     <RentFieldButton shortId={bikeId}/>
