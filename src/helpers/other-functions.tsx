@@ -1,11 +1,17 @@
 export function formatTimestamp(isoString: string): string | null {
     const date = new Date(isoString);
-    const yyyy = date.getFullYear();
-    const mm = (date.getMonth() + 1).toString().padStart(2, '0');
-    const dd = date.getDate().toString().padStart(2, '0');
-    const hh = date.getHours().toString().padStart(2, '0');
-    const min = date.getMinutes().toString().padStart(2, '0');
-    const ss = date.getSeconds().toString().padStart(2, '0');
+    const dateOptions: Intl.DateTimeFormatOptions = {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false, // 24-hour format
+        timeZone: 'Europe/Stockholm' // Set Sweden's time zone
+    };
+    const formatter = new Intl.DateTimeFormat('sv-SE', dateOptions); // 'sv-SE' is the Swedish locale
+    const formattedDate = formatter.format(date);
 
-    return `${yyyy}-${mm}-${dd} ${hh}:${min}:${ss}`;
+    return formattedDate;
 }
