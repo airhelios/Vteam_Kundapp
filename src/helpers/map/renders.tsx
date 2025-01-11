@@ -1,5 +1,6 @@
 import { Popup, Marker, Polygon, Tooltip} from 'react-leaflet';
-import { Scooter, Zone } from './leaflet-types'
+import { Zone } from './leaflet-types'
+import { BikeStatus, Scooter } from '../bike-functions';
 import { LatLngTuple } from 'leaflet';
 import { iconStation } from '../config';
 import MarkerBoosted from '../../components/MarkerBoosted';
@@ -17,7 +18,7 @@ const zoneColors = (zoneType: string) => {
     }
 }
 
-const renderScooterMarkers = (scooterData: Scooter[])=>   (
+const renderScooterMarkers = (scooterData: Scooter[] | BikeStatus[])=>   (
     scooterData?.map((scooter, index) => (
         <MarkerBoosted key={index} id={scooter.id} batteryLevel={scooter.batteryLevel}
         status={scooter.status} latitude={scooter.latitude} longitude={scooter.longitude} />

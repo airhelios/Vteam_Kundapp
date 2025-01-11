@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Popup, Marker, Polygon, Tooltip} from 'react-leaflet';
-import { Scooter, Zone } from '../helpers/map/leaflet-types'
+import { Popup, Marker } from 'react-leaflet';
 import RentButtonMarker from './RentButtonMarker';
+import { Scooter } from '../helpers/bike-functions';
 
 
 export default function MarkerBoosted( {id, batteryLevel, latitude, longitude, status} : Scooter) {
