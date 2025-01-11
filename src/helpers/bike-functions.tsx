@@ -135,14 +135,36 @@ export const returnAllRentals = async (token: string): Promise<AxiosResponse | u
 // }
 
 
+// export function formatTimestamp(isoString: string): string | null {
+//     const date = new Date(isoString);
+//     const yyyy = date.getFullYear();
+//     const mm = (date.getMonth() + 1).toString().padStart(2, '0');
+//     const dd = date.getDate().toString().padStart(2, '0');
+//     const hh = date.getHours().toString().padStart(2, '0');
+//     const min = date.getMinutes().toString().padStart(2, '0');
+//     const ss = date.getSeconds().toString().padStart(2, '0');
+
+//     return `${yyyy}-${mm}-${dd} ${hh}:${min}:${ss}`;
+// }
+
+function padZero(value: number): string {
+    return String(value).padStart(2, '0');
+}
+
 export function formatTimestamp(isoString: string): string | null {
     const date = new Date(isoString);
+
+    if (isNaN(date.getTime())) {
+        console.error('Invalid date string');
+        return null;
+    }
+
     const yyyy = date.getFullYear();
-    const mm = (date.getMonth() + 1).toString().padStart(2, '0');
-    const dd = date.getDate().toString().padStart(2, '0');
-    const hh = date.getHours().toString().padStart(2, '0');
-    const min = date.getMinutes().toString().padStart(2, '0');
-    const ss = date.getSeconds().toString().padStart(2, '0');
+    const mm = padZero(date.getMonth() + 1);
+    const dd = padZero(date.getDate());
+    const hh = padZero(date.getHours());
+    const min = padZero(date.getMinutes());
+    const ss = padZero(date.getSeconds());
 
     return `${yyyy}-${mm}-${dd} ${hh}:${min}:${ss}`;
 }
