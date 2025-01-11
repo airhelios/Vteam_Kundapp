@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Popup, Marker } from 'react-leaflet';
 import RentButtonMarker from './RentButtonMarker';
-import { Scooter } from '../helpers/bike-functions';
+import { Scooter } from '../helpers/bike-types';
 
 
 export default function MarkerBoosted( {id, batteryLevel, latitude, longitude, status} : Scooter) {

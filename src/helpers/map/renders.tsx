@@ -1,6 +1,6 @@
 import { Popup, Marker, Polygon, Tooltip} from 'react-leaflet';
 import { Zone } from './leaflet-types'
-import { BikeStatus, Scooter } from '../bike-functions';
+import { BikeStatus, Scooter } from '../bike-types';
 import { LatLngTuple } from 'leaflet';
 import { iconStation } from '../config';
 import MarkerBoosted from '../../components/MarkerBoosted';

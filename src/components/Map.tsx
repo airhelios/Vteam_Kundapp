@@ -8,11 +8,11 @@ import { useParams } from "react-router-dom";
 import { cities } from '../helpers/map/cities';
 import MapCenter from './MapCenter';
 import { renderScooterMarkers, renderPolygons } from '../helpers/map/renders';
-import { bikePerCity, BikeStatus } from '../helpers/bike-functions';
+import { bikePerCity } from '../helpers/bike-functions';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store/store';
 import LocationMarker from './LocationMarker';
-import { Scooter } from '../helpers/bike-functions';
+import { BikeStatus, Scooter } from '../helpers/bike-types';
 
 
 export default function Map() {
