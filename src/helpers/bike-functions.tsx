@@ -147,33 +147,33 @@ export const returnAllRentals = async (token: string): Promise<AxiosResponse | u
 //     return `${yyyy}-${mm}-${dd} ${hh}:${min}:${ss}`;
 // }
 
-export function formatTimestamp(isoString: string): string | null {
-    const date = new Date(isoString);
+// export function formatTimestamp(isoString: string): string | null {
+//     const date = new Date(isoString);
 
-    // if (isNaN(date.getTime())) {
-    //     console.error('Invalid date string');
-    //     return null;
-    // }
+//     // if (isNaN(date.getTime())) {
+//     //     console.error('Invalid date string');
+//     //     return null;
+//     // }
 
-    // Create options for formatting, including Sweden's time zone
-    const dateOptions: Intl.DateTimeFormatOptions = {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: false, // 24-hour format
-        timeZone: 'Europe/Stockholm' // Set Sweden's time zone
-    };
+//     // Create options for formatting, including Sweden's time zone
+//     const dateOptions: Intl.DateTimeFormatOptions = {
+//         year: 'numeric',
+//         month: '2-digit',
+//         day: '2-digit',
+//         hour: '2-digit',
+//         minute: '2-digit',
+//         second: '2-digit',
+//         hour12: false, // 24-hour format
+//         timeZone: 'Europe/Stockholm' // Set Sweden's time zone
+//     };
 
-    // Format the date using `Intl.DateTimeFormat` with the Sweden time zone
-    const formatter = new Intl.DateTimeFormat('sv-SE', dateOptions); // 'sv-SE' is the Swedish locale
-    const formattedDate = formatter.format(date);
+//     // Format the date using `Intl.DateTimeFormat` with the Sweden time zone
+//     const formatter = new Intl.DateTimeFormat('sv-SE', dateOptions); // 'sv-SE' is the Swedish locale
+//     const formattedDate = formatter.format(date);
 
-    // // Replace the commas and spaces to match the format YYYY-MM-DD HH:mm:ss
-    // const [datePart, timePart] = formattedDate.split(',').map(part => part.trim());
-    // // const formattedTimestamp = `${datePart} ${timePart.replace(/\//g, ':')}`;
+//     // // Replace the commas and spaces to match the format YYYY-MM-DD HH:mm:ss
+//     // const [datePart, timePart] = formattedDate.split(',').map(part => part.trim());
+//     // // const formattedTimestamp = `${datePart} ${timePart.replace(/\//g, ':')}`;
 
-    return formattedDate;
-}
+//     return formattedDate;
+// }

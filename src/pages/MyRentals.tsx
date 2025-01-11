@@ -9,7 +9,7 @@ import ReturnRentButton from '../components/ReturnRentButton';
 import ReturnAllRentalsButton from '../components/ReturnAllRentalsButton';
 import { Badge } from "flowbite-react";
 import Logo from '../components/Logo';
-import { formatTimestamp } from '../helpers/bike-functions';
+import { formatTimestamp } from '../helpers/other-functions';
 
 export default function MyRentals() {
   const { isLoggedIn, user, token } = useSelector((state: RootState) =>  state.auth);
