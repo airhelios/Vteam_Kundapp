@@ -8,10 +8,15 @@ export default tseslint.config(
   { ignores: ['dist'] },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
-    files: ['**/*.{ts,tsx}'],
+    files: ['**/*.{ts,tsx,js}'],
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
+      parserOptions: {
+        ecmaVersion: 2020,
+        sourceType: 'module', // Enable ES module support
+        jsx: true, // Enable JSX parsing
+      }
     },
     plugins: {
       'react-hooks': reactHooks,

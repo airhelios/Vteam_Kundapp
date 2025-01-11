@@ -7,7 +7,7 @@ export default function LocationMarker() {
     {
         //Code from https://stackoverflow.com/questions/66500181/how-to-locate-react-leaflet-map-to-users-current-position-and-get-the-borders-f
         const [position, setPosition] = useState<L.LatLng | null>(null);
-        const [bbox, setBbox] = useState<string[]>([]);
+        const [, setBbox] = useState<string[]>([]);
     
         const map = useMap();
     

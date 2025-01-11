@@ -2,8 +2,8 @@ import { MapContainer,  TileLayer } from 'react-leaflet';
 import { useEffect, useState } from 'react';
 import {LatLngExpression } from 'leaflet';
 import { API_URL } from '../helpers/config';
-import axios from 'axios';
-import { Scooter, Zone } from '../helpers/map/leaflet-types'
+import axios, {AxiosError} from 'axios';
+import { Zone } from '../helpers/map/leaflet-types'
 import { useParams } from "react-router-dom";
 import { cities } from '../helpers/map/cities';
 import MapCenter from './MapCenter';
@@ -12,16 +12,15 @@ import { bikePerCity } from '../helpers/bike-functions';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store/store';
 import LocationMarker from './LocationMarker';
+import { BikeStatus, Scooter } from '../helpers/bike-types';
 
 
 export default function Map() {
     const { city }  = useParams();
     const [startPosition, setStartPosition] = useState<LatLngExpression>([59.2741, 15.2066]);
-    // const {isLoggedIn, token, user, role} = useSelector((state: RootState) =>  state.auth);
-    const [scooterData, setScooterData] = useState<Scooter[]>([]);
+    const [scooterData, setScooterData] = useState<BikeStatus[] | Scooter[]>([]);
     const [zoneData, setZoneData] = useState<Zone[]>([]);
     const zoom = 11;
-    // const stationPositions: LatLngTuple[] = [[51.505, -0.04],[51.515, -0.15],[51.535, -0.08]];
     const { token } = useSelector((state: RootState) => state.auth);
 
     useEffect(() => {
@@ -34,8 +33,6 @@ export default function Map() {
         const fetchScooters = async() => {
         try {
                 if (city) {
-                    // const response = await axios.get(`${API_URL}/bike/city/${city}`);
-                    // console.log(response.data)
                     const data = await bikePerCity(city, token, 'Available')
                     setScooterData(data);
                 }
@@ -43,10 +40,12 @@ export default function Map() {
 
             catch(error)
             {
+              const axiosError = error as AxiosError;
+              console.log(axiosError?.response?.data);
             }
       }
       fetchScooters();
-      },[])
+      },[city, token])
     
     useEffect(() => {
     const fetchZones = async() => {
@@ -55,12 +54,15 @@ export default function Map() {
             const response = await axios.get(`${API_URL}/zone/city/${city}`);
             setZoneData(response.data);
         }
+
         catch(error)
         {
+          const axiosError = error as AxiosError;
+          console.log(axiosError?.response?.data);
         }
     }
     fetchZones();
-    },[])
+    },[city])
 
   return (
     <div id="map" 

@@ -1,11 +1,3 @@
-export type Scooter = {
-    id: string;
-    batteryLevel: number;
-    latitude: number;
-    longitude: number;
-    status: string;
-  };
-
 export type PolygonPoint = {
     lat: number;
     lng: number;

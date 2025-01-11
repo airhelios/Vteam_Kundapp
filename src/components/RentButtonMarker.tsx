@@ -2,7 +2,7 @@ import {  useSelector } from 'react-redux';
 import { RootState } from '../redux/store/store';
 import { toastOptionsError, toastOptionsSuccess } from '../helpers/config';
 import { rentBike } from '../helpers/bike-functions';
-import { toast} from 'react-toastify';
+import { toast } from 'react-toastify';
 
 
 type Props = {
