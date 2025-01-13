@@ -44,6 +44,14 @@ export default function MyRentals() {
   return (
     <div>
       <Logo/>
+      <div className="text-center my-4">
+        <button
+          onClick={() => navigate('/customerstartpage')}
+          className="text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-12 py-2.5 focus:outline-none"
+        >
+          Home
+        </button>
+      </div>
     <div data-testid="my-rentals"><h1 className="text-2xl text-gray-900">
     Mina resor
 </h1></div>
