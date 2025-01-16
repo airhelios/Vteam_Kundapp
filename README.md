@@ -1,3 +1,6 @@
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/airhelios/Vteam_Kundapp/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/airhelios/Vteam_Kundapp/?branch=main)
+[![Code Coverage](https://scrutinizer-ci.com/g/airhelios/Vteam_Kundapp/badges/coverage.png?b=main)](https://scrutinizer-ci.com/g/airhelios/Vteam_Kundapp/?branch=main)
+
 # Introduction
 This customer application was developed to meet the customer app requirements in the course [DV1676 at BTH](https://dbwebb.se/kurser/vteam-v1). The app is designed for mobile use, the purpose is to allow customers to rent electric scooters.
 
