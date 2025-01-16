@@ -9,6 +9,10 @@ export default defineConfig({
   base: '',
   plugins: [react()],
   server: {
-    port: parseInt(process.env.PORT || "3000")
+    port: parseInt(process.env.PORT || "1337")
+  },
+  preview : {
+    host: 'http://localhost',
+    port: 1337,
   },
 })
