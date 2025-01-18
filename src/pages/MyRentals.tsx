@@ -15,7 +15,7 @@ export default function MyRentals() {
   const { isLoggedIn, user, token } = useSelector((state: RootState) =>  state.auth);
   const [rentals, setRentals] = useState<Rental[]>([]);
   const navigate = useNavigate();
-  const [refreshTrigger, setRefreshTrigger] = useState(0);
+  const [refreshTrigger, setRefreshTrigger] = useState(false);
 
   useEffect(() => {
     if(!isLoggedIn) {
@@ -33,7 +33,7 @@ export default function MyRentals() {
               const rentalData = await allRentals(token);
               rentalData.reverse()
               setRentals(rentalData)}
-              , 100);
+              , 1000);
 
         }
     };
@@ -55,7 +55,7 @@ export default function MyRentals() {
     <div data-testid="my-rentals"><h1 className="text-2xl text-gray-900">
     Mina resor
 </h1></div>
-    <div onClick={() => setRefreshTrigger(refreshTrigger*-1)}>
+    <div onClick={() => setRefreshTrigger(!refreshTrigger)}>
     <ReturnAllRentalsButton className="w-full text-white my-5 bg-blue-500 hover:bg-blue-700
   focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5
   me-2 mb-2 focus:outline-none"/>
